@@ -7,7 +7,7 @@ import { verifyToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// Signup (Normal Users Only)
+// (Normal Users Only)
 router.post('/signup', async (req, res) => {
   const { name, email, password, address } = req.body;
 
@@ -28,7 +28,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Login (All Users)
+// (All Users)
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -47,7 +47,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Update Password (Logged in users)
 router.post('/update-password', verifyToken, async (req, res) => {
   const { newPassword } = req.body;
   

@@ -15,13 +15,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Mount Routes
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/owner', ownerRoutes);
 
-// Global Error Handler
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });

@@ -5,25 +5,25 @@ import { verifyToken, requireRole } from '../middleware/authMiddleware.js';
 const router = express.Router();
 router.use(verifyToken, requireRole(['STORE_OWNER']));
 
-// Owner Dashboard: Get average rating and list of users who submitted ratings
+
 router.get('/dashboard', async (req, res) => {
   const ownerId = req.user.id;
 
   try {
-    // Get the store associated with this owner
+  
     const storeResult = await db.query('SELECT id, name FROM stores WHERE owner_id = $1', [ownerId]);
     if (storeResult.rows.length === 0) {
       return res.status(404).json({ error: 'No store associated with this owner.' });
     }
     const storeId = storeResult.rows[0].id;
 
-    // Get Average Rating
+
     const avgResult = await db.query(
       'SELECT COALESCE(ROUND(AVG(rating), 2), 0) as average_rating FROM ratings WHERE store_id = $1',
       [storeId]
     );
 
-    // Get List of Users who rated
+
     const ratersResult = await db.query(`
       SELECT u.name, u.email, r.rating, r.updated_at
       FROM ratings r

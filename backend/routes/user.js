@@ -5,7 +5,7 @@ import { verifyToken, requireRole } from '../middleware/authMiddleware.js';
 const router = express.Router();
 router.use(verifyToken, requireRole(['NORMAL']));
 
-// List all registered stores with Search and Personal Rating
+
 router.get('/stores', async (req, res) => {
   const { search, sortBy = 'name', order = 'ASC' } = req.query;
   const userId = req.user.id;
@@ -40,7 +40,7 @@ router.get('/stores', async (req, res) => {
   }
 });
 
-// Submit or Modify Rating (Upsert)
+
 router.post('/stores/:storeId/rate', async (req, res) => {
   const { storeId } = req.params;
   const { rating } = req.body;

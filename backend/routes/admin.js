@@ -7,7 +7,7 @@ import { validateUserForm } from '../utils/validators.js';
 const router = express.Router();
 router.use(verifyToken, requireRole(['ADMIN']));
 
-// Dashboard Metrics
+
 router.get('/dashboard', async (req, res) => {
   try {
     const usersCount = await db.query('SELECT COUNT(*) FROM users');
@@ -24,7 +24,6 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-// Add New User (Admin, Normal, or Owner)
 router.post('/users', async (req, res) => {
   const { name, email, password, address, role } = req.body;
   const errors = validateUserForm(name, email, password, address);
@@ -42,7 +41,6 @@ router.post('/users', async (req, res) => {
   }
 });
 
-// Add New Store
 router.post('/stores', async (req, res) => {
   const { owner_id, name, email, address } = req.body;
   try {
@@ -56,7 +54,7 @@ router.post('/stores', async (req, res) => {
   }
 });
 
-// List Users with Sorting, Filtering, and Store Owner Ratings
+
 router.get('/users', async (req, res) => {
   const { search, role, sortBy = 'name', order = 'ASC' } = req.query;
   const validSortCols = ['name', 'email', 'address', 'role'];
@@ -98,7 +96,6 @@ router.get('/users', async (req, res) => {
   }
 });
 
-// List Stores with Sorting, Filtering, and Ratings
 router.get('/stores', async (req, res) => {
   const { search, sortBy = 'name', order = 'ASC' } = req.query;
   const validSortCols = ['name', 'email', 'address', 'rating'];
