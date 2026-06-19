@@ -2,6 +2,7 @@
 
 A full-stack web application that allows users to register, discover, and submit ratings for stores. Built with a focus on strict Role-Based Access Control (RBAC), secure authentication, and a interactive UI.
 
+**[🔴 View Live Demo](https://nexus-ratings.vercel.app)**
 ---
 
 ## 🚀 Tech Stack
