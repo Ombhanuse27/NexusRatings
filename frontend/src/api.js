@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  // Replace this with your actual Render URL!
+  baseURL: 'https://nexusratings.onrender.com/api', 
 });
 
 api.interceptors.request.use((config) => {
