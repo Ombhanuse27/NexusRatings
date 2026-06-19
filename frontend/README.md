@@ -56,22 +56,20 @@ A robust, full-stack web application that allows users to register, discover, an
 
 ## 📸 Application Screenshots
 
-*(Replace the placeholder image links below with actual screenshots of your application! To add images, create a `docs` folder in your repo, drop your screenshots there, and update the paths).*
-
 ### Authentication & Signup
-![Signup View](https://via.placeholder.com/800x450/f8fafc/1e293b?text=Add+Screenshot+of+Signup+Page+Here)
+![Signup View](./frontend/src/assets/signup-view.png)
 *Strict form validations ensuring robust data entry.*
 
 ### Administrator Dashboard
-![Admin Dashboard](https://via.placeholder.com/800x450/f8fafc/1e293b?text=Add+Screenshot+of+Admin+Dashboard+Here)
+![Admin Dashboard](./frontend/src/assets/admin-dashboard.png)
 *Global metrics, debounced searching, and modal-based data entry.*
 
 ### Interactive User Dashboard
-![User Dashboard](https://via.placeholder.com/800x450/f8fafc/1e293b?text=Add+Screenshot+of+Normal+User+Dashboard)
+![User Dashboard](./frontend/src/assets/user-dashboard.png)
 *Optimistic UI star-rating system with toast notifications.*
 
-### Store Owner Analytics
-![Owner Dashboard](https://via.placeholder.com/800x450/f8fafc/1e293b?text=Add+Screenshot+of+Store+Owner+Dashboard)
+### Store Owner Dashboard
+![Owner Dashboard](./frontend/src/assets/owner-dashboard.png)
 *Sortable data tables for review analytics.*
 
 
@@ -83,10 +81,7 @@ A robust, full-stack web application that allows users to register, discover, an
 * Node.js (v16+)
 * A NeonDB / PostgreSQL instance
 
-### 1. Database Setup
-Execute the SQL script found in `backend/schema.sql` (or copy from the challenge instructions) into your NeonDB SQL Editor to generate the necessary tables.
-
-### 2. Backend Setup
+### Backend Setup
 ```bash
 cd backend
 npm install
