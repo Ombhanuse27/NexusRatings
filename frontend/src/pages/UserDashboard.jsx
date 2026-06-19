@@ -3,7 +3,6 @@ import api from '../api';
 import Navbar from '../components/Navbar';
 import ChangePassword from '../components/ChangePassword';
 
-// --- INLINED HELPERS & COMPONENTS ---
 
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -46,7 +45,6 @@ const StarRating = ({ currentRating, onRate, disabled }) => {
   );
 };
 
-// --- MAIN COMPONENT ---
 
 export default function UserDashboard() {
   const [stores, setStores] = useState([]);
@@ -61,7 +59,6 @@ export default function UserDashboard() {
   const [ratingLoadingId, setRatingLoadingId] = useState(null);
   const [toast, setToast] = useState(null);
 
-  // Auto-dismiss toast
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => setToast(null), 3000);
@@ -86,19 +83,17 @@ export default function UserDashboard() {
   const handleRate = async (storeId, rating) => {
     setRatingLoadingId(storeId);
     
-    // Optimistic UI Update: Instantly show the new rating to the user
     setStores(prev => prev.map(s => s.id === storeId ? { ...s, user_rating: rating } : s));
 
     try {
       await api.post(`/user/stores/${storeId}/rate`, { rating });
       setToast({ message: 'Rating saved successfully!', type: 'success' });
       
-      // Re-fetch in background to update the overall average rating
       const res = await api.get(`/user/stores?search=${debouncedSearch}&sortBy=${sort.by}&order=${sort.order}`);
       setStores(res.data);
     } catch (err) {
       setToast({ message: err.response?.data?.error || 'Failed to submit rating', type: 'error' });
-      fetchStores(); // Revert optimistic update on failure
+      fetchStores(); 
     } finally {
       setRatingLoadingId(null);
     }
@@ -107,8 +102,7 @@ export default function UserDashboard() {
   return (
     <div className="min-h-screen bg-slate-50 pb-10">
       <Navbar title="Explore Stores" />
-      
-      {/* Toast Notification */}
+
       {toast && (
         <div className={`fixed bottom-5 right-5 z-50 px-6 py-3 rounded-lg shadow-xl text-white font-medium transition-all animate-fade-in ${toast.type === 'error' ? 'bg-red-500' : 'bg-emerald-500'}`}>
           {toast.message}
@@ -117,7 +111,7 @@ export default function UserDashboard() {
 
       <div className="p-8 max-w-6xl mx-auto space-y-8">
         
-        {/* Search & Sort Controls */}
+
         <div className="flex flex-col md:flex-row gap-4 p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
           <div className="flex-1 relative">
             <input 
@@ -150,7 +144,6 @@ export default function UserDashboard() {
           </div>
         </div>
 
-        {/* Stores Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {stores.map(store => (
             <div key={store.id} className="flex flex-col justify-between p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
@@ -192,7 +185,7 @@ export default function UserDashboard() {
           ))}
         </div>
         
-        {/* Empty State */}
+
         {!isLoading && stores.length === 0 && (
           <div className="py-16 text-center">
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">

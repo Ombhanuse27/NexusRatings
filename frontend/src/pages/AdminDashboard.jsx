@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../api';
 import Navbar from '../components/Navbar';
 
-// --- INLINED HELPERS TO AVOID EXTRA FILES ---
 
-// 1. Debounce Hook (Prevents API spam when searching)
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
@@ -14,7 +12,6 @@ function useDebounce(value, delay) {
   return debouncedValue;
 }
 
-// 2. Loading Spinner Component
 const Spinner = () => (
   <svg className="animate-spin w-5 h-5 inline-block text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -22,7 +19,6 @@ const Spinner = () => (
   </svg>
 );
 
-// --- MAIN COMPONENT ---
 
 export default function AdminDashboard() {
   const [metrics, setMetrics] = useState({ totalUsers: 0, totalStores: 0, totalRatings: 0 });
@@ -31,7 +27,7 @@ export default function AdminDashboard() {
   
   // Search & Filters
   const [searchInput, setSearchInput] = useState('');
-  const debouncedSearch = useDebounce(searchInput, 400); // Waits 400ms after typing
+  const debouncedSearch = useDebounce(searchInput, 400); 
   const [roleFilter, setRoleFilter] = useState('');
   const [userSort, setUserSort] = useState({ by: 'name', order: 'ASC' });
   const [storeSort, setStoreSort] = useState({ by: 'name', order: 'ASC' });
@@ -42,13 +38,12 @@ export default function AdminDashboard() {
   const [isSubmittingStore, setIsSubmittingStore] = useState(false);
   const [showUserModal, setShowUserModal] = useState(false);
   const [showStoreModal, setShowStoreModal] = useState(false);
-  const [toast, setToast] = useState(null); // { message, type: 'success' | 'error' }
+  const [toast, setToast] = useState(null); 
 
   // Form States
   const [newUser, setNewUser] = useState({ name: '', email: '', password: '', address: '', role: 'NORMAL' });
   const [newStore, setNewStore] = useState({ owner_id: '', name: '', email: '', address: '' });
 
-  // Auto-hide toast after 3 seconds
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => setToast(null), 3000);
@@ -115,7 +110,6 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-slate-50 pb-10">
       <Navbar title="Admin Dashboard" />
       
-      {/* Toast Notification */}
       {toast && (
         <div className={`fixed bottom-5 right-5 z-50 px-6 py-3 rounded-lg shadow-xl text-white font-medium transition-all ${toast.type === 'error' ? 'bg-red-500' : 'bg-emerald-500'}`}>
           {toast.message}
@@ -124,7 +118,6 @@ export default function AdminDashboard() {
 
       <div className="p-8 max-w-7xl mx-auto space-y-6">
         
-        {/* Header & Actions */}
         <div className="flex justify-between items-center bg-white p-6 rounded-xl shadow-sm border border-slate-100">
           <h2 className="text-2xl font-bold text-slate-800">System Overview</h2>
           <div className="flex gap-4">
@@ -137,7 +130,6 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 bg-white border border-slate-100 rounded-xl shadow-sm text-center">
             <h3 className="text-slate-500 text-sm font-bold uppercase tracking-wider">Total Users</h3>
@@ -153,7 +145,6 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        {/* Search & Filters */}
         <div className="flex gap-4 p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
           <div className="flex-1 relative">
             <input 
@@ -176,7 +167,7 @@ export default function AdminDashboard() {
           </select>
         </div>
 
-        {/* Tables Section */}
+ 
         <div className="grid lg:grid-cols-2 gap-6">
           
           {/* Users Table */}
@@ -252,8 +243,6 @@ export default function AdminDashboard() {
 
         </div>
       </div>
-
-      {/* --- MODALS --- */}
 
       {/* User Modal */}
       {showUserModal && (

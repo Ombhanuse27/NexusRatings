@@ -3,7 +3,7 @@ import api from '../api';
 import Navbar from '../components/Navbar';
 import ChangePassword from '../components/ChangePassword';
 
-// --- INLINED SPINNER ---
+
 const Spinner = ({ size = "w-8 h-8", color = "text-blue-500" }) => (
   <svg className={`animate-spin ${size} ${color} inline-block`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -16,7 +16,6 @@ export default function OwnerDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   
-  // Sorting State for the table
   const [sortConfig, setSortConfig] = useState({ key: 'updated_at', direction: 'desc' });
 
   useEffect(() => {
@@ -35,14 +34,12 @@ export default function OwnerDashboard() {
     fetchDashboard();
   }, []);
 
-  // Client-side sorting logic
   const sortedRaters = useMemo(() => {
     let sortableItems = [...data.raters];
     sortableItems.sort((a, b) => {
       let aValue = a[sortConfig.key];
       let bValue = b[sortConfig.key];
 
-      // Handle date sorting specifically
       if (sortConfig.key === 'updated_at') {
         aValue = new Date(a.updated_at).getTime();
         bValue = new Date(b.updated_at).getTime();
@@ -91,7 +88,7 @@ export default function OwnerDashboard() {
           </div>
         ) : (
           <>
-            {/* Top Metrics Cards */}
+
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-all hover:shadow-md">
                 <h2 className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2">Registered Store Identity</h2>
@@ -106,7 +103,6 @@ export default function OwnerDashboard() {
               </div>
             </div>
 
-            {/* Interactive Ratings Table */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
               <div className="p-6 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
                 <h3 className="text-xl font-bold text-slate-800">Customer Reviews & Ratings</h3>
@@ -167,7 +163,6 @@ export default function OwnerDashboard() {
               </div>
             </div>
 
-            {/* Change Password Component Wrapper */}
             <div className="pt-4">
               <ChangePassword />
             </div>

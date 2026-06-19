@@ -4,7 +4,6 @@ import { AuthContext } from '../context/AuthContext';
 export default function Navbar({ title }) {
   const { logout, user } = useContext(AuthContext);
 
-  // Get the first letter of the user's role to use as a profile avatar
   const initial = user?.role ? user.role.charAt(0) : 'U';
 
   return (
@@ -20,7 +19,6 @@ export default function Navbar({ title }) {
         </h1>
       </div>
 
-      {/* Right Section: Logout Button */}
       <button 
         onClick={logout} 
         className="group flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white transition-all duration-300 bg-white/10 border border-white/20 rounded-xl hover:bg-red-500 hover:border-red-500 hover:shadow-lg hover:-translate-y-0.5 backdrop-blur-sm"

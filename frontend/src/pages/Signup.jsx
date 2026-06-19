@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 
-// --- INLINED SPINNER ---
+
 const Spinner = () => (
   <svg className="animate-spin w-5 h-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -28,7 +28,6 @@ export default function Signup() {
       await api.post('/auth/signup', form);
       setSuccessMsg('Account created successfully! Redirecting to login...');
       
-      // Smooth visual delay before redirecting
       setTimeout(() => {
         navigate('/login');
       }, 2000);
@@ -39,7 +38,7 @@ export default function Signup() {
       } else {
         setErrors([err.response?.data?.error || 'Signup failed. Please try again.']);
       }
-      setIsLoading(false); // Only reset loading if it fails, otherwise let it spin while redirecting
+      setIsLoading(false); 
     }
   };
 
@@ -47,13 +46,11 @@ export default function Signup() {
     <div className="flex items-center justify-center min-h-screen bg-slate-50 p-4">
       <div className="w-full max-w-lg p-8 bg-white rounded-2xl shadow-xl transition-all">
         
-        {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-extrabold text-slate-800">Create an Account</h2>
           <p className="text-slate-500 mt-2 text-sm">Join to discover and rate registered stores</p>
         </div>
         
-        {/* Success Alert */}
         {successMsg && (
           <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg flex items-center font-medium animate-fade-in">
             <svg className="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
@@ -61,7 +58,6 @@ export default function Signup() {
           </div>
         )}
 
-        {/* Error Alert */}
         {errors.length > 0 && (
           <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg text-red-700 text-sm animate-fade-in">
             <div className="font-bold mb-1 flex items-center">
@@ -74,7 +70,6 @@ export default function Signup() {
           </div>
         )}
 
-        {/* Form */}
         <form onSubmit={handleSignup} className="space-y-4">
           
           <div>
@@ -157,7 +152,7 @@ export default function Signup() {
           </button>
         </form>
 
-        {/* Footer Link */}
+
         <p className="mt-6 text-sm text-center text-slate-600 border-t border-slate-100 pt-6">
           Already have an account?{' '}
           <Link to="/login" className="text-emerald-600 font-bold hover:underline">

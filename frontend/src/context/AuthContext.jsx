@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       try {
         const decoded = jwtDecode(token);
-        // Add basic user info. Real app might fetch full profile here.
         setUser({ id: decoded.id, role: decoded.role });
       } catch (err) {
         localStorage.removeItem('token');

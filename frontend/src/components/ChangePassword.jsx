@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import api from '../api';
 
-// --- INLINED SPINNER ---
 const Spinner = () => (
   <svg className="animate-spin w-4 h-4 mr-2 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -21,7 +20,6 @@ export default function ChangePassword() {
     setError('');
     setIsLoading(true);
 
-    // Form Validation matches backend
     const passRegex = /^(?=.*[A-Z])(?=.*[!@#$&*]).{8,16}$/;
     if (!passRegex.test(newPassword)) {
       setIsLoading(false);
@@ -42,7 +40,7 @@ export default function ChangePassword() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden mt-8">
       
-      {/* Header section */}
+
       <div className="p-6 bg-slate-50 border-b border-slate-100">
         <h3 className="text-lg font-bold text-slate-800">Security Settings</h3>
         <p className="text-sm text-slate-500 mt-1">Update your account password</p>
@@ -50,15 +48,14 @@ export default function ChangePassword() {
       
       <div className="p-6">
         
-        {/* Success Alert */}
+
         {message && (
           <div className="mb-5 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg flex items-center text-sm font-medium animate-fade-in">
             <svg className="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
             {message}
           </div>
         )}
-        
-        {/* Error Alert */}
+
         {error && (
           <div className="mb-5 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-r-lg flex items-center text-sm font-medium animate-fade-in">
             <svg className="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -66,7 +63,7 @@ export default function ChangePassword() {
           </div>
         )}
 
-        {/* Input Form */}
+
         <form onSubmit={handleUpdate} className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <input

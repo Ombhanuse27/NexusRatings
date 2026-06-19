@@ -8,7 +8,6 @@ import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
 
-// Protected Route Component
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useContext(AuthContext);
   if (!user) return <Navigate to="/login" />;
