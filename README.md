@@ -1,7 +1,5 @@
 # 🌟 NexusRatings - Full-Stack Store Rating Platform
 
-![NexusRatings Banner](https://via.placeholder.com/1200x400/4F46E5/FFFFFF?text=NexusRatings+-+Full+Stack+Platform)
-
 A full-stack web application that allows users to register, discover, and submit ratings for stores. Built with a focus on strict Role-Based Access Control (RBAC), secure authentication, and a interactive UI.
 
 ---
@@ -37,20 +35,19 @@ A full-stack web application that allows users to register, discover, and submit
 
 #### 1. System Administrator
 * Complete oversight dashboard featuring real-time metrics.
-* Ability to provision new Admin, Normal, and Store Owner accounts.
+* Ability to add new Admin, Normal, and Store Owner accounts.
 * Register new stores and assign them to specific Store Owners.
-* View global directory of users and stores with dynamic sorting (Ascending/Descending) and role-based filtering.
+* Users and stores with dynamic sorting (Ascending/Descending) and role-based filtering.
 
 #### 2. Normal User
 * Browse a searchable directory of all registered stores.
 * Submit or modify a 1-5 star rating for any store.
-* **Optimistic UI:** Star ratings update instantly on the frontend while syncing silently with the database.
-* Self-service password management.
+* Change password management.
 
 #### 3. Store Owner
 * Dedicated analytics dashboard for their assigned store.
 * View average overall rating and a detailed, sortable list of customers who have rated their business.
-* Self-service password management.
+* Change password management.
 
 ---
 
@@ -62,15 +59,15 @@ A full-stack web application that allows users to register, discover, and submit
 
 ### System Administrator Dashboard
 ![Admin Dashboard](./frontend/src/assets/admin-dashboard.png)
-*Global metrics, debounced searching, and modal-based data entry.*
+*Complete oversight dashboard featuring real-time metrics*
 
 ### User Dashboard
 ![User Dashboard](./frontend/src/assets/user-dashboard.png)
-*Optimistic UI star-rating system with toast notifications.*
+*star-rating system for stores listed with toast notifications.*
 
 ### Store Owner Dashboard
 ![Owner Dashboard](./frontend/src/assets/owner-dashboard.png)
-*Sortable data tables for review analytics.*
+*Dedicated analytics dashboard for their assigned store.*
 
 
 ---
